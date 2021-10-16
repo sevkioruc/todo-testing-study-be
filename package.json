@@ -1,0 +1,31 @@
+{
+  "name": "todo-testing-study",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sevkioruc/todo-testing-study.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sevkioruc/todo-testing-study/issues"
+  },
+  "homepage": "https://github.com/sevkioruc/todo-testing-study#readme",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^10.0.0",
+    "express": "^4.17.1",
+    "mysql2": "^2.3.2",
+    "sequelize": "^6.7.0"
+  },
+  "devDependencies": {
+    "jest": "^27.2.5",
+    "supertest": "^6.1.6"
+  }
+}
