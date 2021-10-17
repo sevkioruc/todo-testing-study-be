@@ -10,6 +10,9 @@ app.use(express.urlencoded({ extended: true }))
 const db = require('./database')
 db.sequelize.sync()
 
+// Routes
+require('./app/routes/todo.route')(app)
+
 const PORT = port || 5000
 app.listen(PORT, () => {
 	console.log(`Server is running on port ${PORT}`)
