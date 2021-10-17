@@ -20,4 +20,12 @@ describe('Todo', () => {
 		expect(response.status).toBe(200)
 	})
 
+	it('If todo content is empty then return error message with status 400', async () => {
+		const response =
+			await request
+				.post('/v1/todo')
+				.send('')
+
+		expect(response.body.message).toBe('Content can not be empty')
+	})
 })
