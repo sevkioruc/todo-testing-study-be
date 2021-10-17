@@ -28,4 +28,13 @@ describe('Todo', () => {
 
 		expect(response.body.message).toBe('Content can not be empty')
 	})
+
+	it('Return todo content when todo is created with status 201', async () => {
+		const response =
+			await request
+				.post('/v1/todo')
+				.send({ content: 'Dummy Content' })
+
+		expect(response.body.content).toBe('Dummy Content')
+	})
 })

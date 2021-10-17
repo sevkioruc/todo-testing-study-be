@@ -8,6 +8,15 @@ exports.findAll = async (req, res) => {
 
 exports.create = async (req, res) => {
 	if (!req.body.content) {
-		res.status(400).send({message: 'Content can not be empty'})
+		res.status(400).send({ message: 'Content can not be empty' })
+	}
+
+	try {
+		const todo = { content: req.body.content }
+
+		const response = await Todo.create(todo)
+		res.status(201).send(response.dataValues)
+	} catch (err) {
+
 	}
 }
