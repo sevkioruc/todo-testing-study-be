@@ -12,6 +12,6 @@ const db = {}
 db.Sequelize = Sequelize
 db.sequelize = sequelize
 
-db.todo = require('')()
+db.todo = require('./app/models/todo')(sequelize, Sequelize)
 
 module.exports = db
