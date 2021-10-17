@@ -5,5 +5,7 @@ module.exports = app => {
 
 	router.get('/', todoController.findAll)
 
+	router.post('/', todoController.create)
+
 	app.use('/v1/todo', router)
 }
