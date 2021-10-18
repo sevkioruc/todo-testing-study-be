@@ -37,13 +37,4 @@ describe('Todo', () => {
 
 		expect(response.body.content).toBe('Dummy Content')
 	})
-
-	it('Return error message when some error occured while creating the Todo', async () => {
-		const response =
-			await request
-				.post('/v1/todo')
-				.send({ content: 'Dummy Content' })
-
-		expect(response.body.message).toBe('Some error occured while creating the Todo')
-	})
 })

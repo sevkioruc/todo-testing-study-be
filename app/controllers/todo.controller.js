@@ -17,6 +17,6 @@ exports.create = async (req, res) => {
 		const response = await Todo.create(todo)
 		res.status(201).send(response.dataValues)
 	} catch (err) {
-
+		res.status(500).send({ message: 'Some error occured while creating the Todo' })
 	}
 }
