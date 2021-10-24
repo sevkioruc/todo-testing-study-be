@@ -3,7 +3,7 @@ const Todo = db.todo
 
 exports.findAll = async (req, res) => {
 	const todos = await Todo.findAll()
-	res.status(200).send(todos)
+	res.status(200).send({ todos })
 }
 
 exports.create = async (req, res) => {
@@ -41,5 +41,15 @@ exports.update = async (req, res) => {
 		res.status(200).send({ message: 'Todo was updated' })
 	} catch {
 		res.status(400).send({ message: 'Todo could not be update' })
+	}
+}
+
+exports.delete = async (req, res) => {
+	const id = req.params.id
+	try {
+		await Todo.destroy({ where: { id: id } })
+		res.status(200).send({ message: 'Todo was deleted' })
+	} catch {
+		res.status(400).send({ message: 'Todo could not be deleted' })
 	}
 }

@@ -78,4 +78,20 @@ describe('Todo', () => {
 
 		expect(getSpecificTodoResponse.body.content).toBe('Updated dummy content')
 	})
+
+	it('Todo can be deleted', async () => {
+		const todoCreateResponse =
+			await request
+				.post('/v1/todo')
+				.send({ content: 'Dummy content' })
+
+		const todoID = todoCreateResponse.body.id
+
+		await request.delete(`/v1/todo/${todoID}`)
+
+		const getAllTodoResponse = await request.get('/v1/todo')
+		const allTodosLength = getAllTodoResponse.body.todos.length
+
+		expect(allTodosLength).toBe(0)
+	})
 })

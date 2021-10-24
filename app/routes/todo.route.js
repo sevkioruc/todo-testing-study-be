@@ -11,5 +11,7 @@ module.exports = app => {
 
 	router.put('/:id', todoController.update)
 
+	router.delete('/:id', todoController.delete)
+
 	app.use('/v1/todo', router)
 }
