@@ -21,3 +21,13 @@ exports.create = async (req, res) => {
 		res.status(500).send({ message: 'Some error occured while creating the Todo' })
 	}
 }
+
+exports.findOne = async (req, res) => {
+	const id = req.params.id
+
+	const todo = await Todo.findOne({ where: { id: id } })
+
+	if (todo) {
+		res.status(200).send(todo)
+	}
+}

@@ -37,4 +37,17 @@ describe('Todo', () => {
 
 		expect(response.body.content).toBe('Dummy Content')
 	})
+
+	it('Get specific todo with id', async () => {
+		const todoCreateResponse =
+			await request
+				.post('/v1/todo')
+				.send({ content: 'Specific todo content' })
+
+		const todoID = todoCreateResponse.body.id
+
+		const getSpecificTodoResponse = await request.get(`/v1/todo/${todoID}`)
+
+		expect(getSpecificTodoResponse.body.content).toBe('Specific todo content')
+	})
 })
