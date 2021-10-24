@@ -50,4 +50,15 @@ describe('Todo', () => {
 
 		expect(getSpecificTodoResponse.body.content).toBe('Specific todo content')
 	})
+
+	it('Return not found error when get specific todo with invalid id', async () => {
+		const todoCreateResponse =
+			await request
+				.post('/v1/todo')
+				.send({ content: 'Specific todo content' })
+
+		const getSpecificTodoResponse = await request.get('/v1/todo/2')
+
+		expect(getSpecificTodoResponse.body.message).toBe('Todo not found')
+	})
 })

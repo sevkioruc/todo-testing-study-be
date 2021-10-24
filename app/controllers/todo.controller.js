@@ -29,5 +29,7 @@ exports.findOne = async (req, res) => {
 
 	if (todo) {
 		res.status(200).send(todo)
+	} else {
+		res.status(404).send({ message: 'Todo not found' })
 	}
 }
