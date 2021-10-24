@@ -9,6 +9,7 @@ exports.findAll = async (req, res) => {
 exports.create = async (req, res) => {
 	if (!req.body.content) {
 		res.status(400).send({ message: 'Content can not be empty' })
+		return
 	}
 
 	try {
@@ -16,7 +17,7 @@ exports.create = async (req, res) => {
 
 		const response = await Todo.create(todo)
 		res.status(201).send(response.dataValues)
-	} catch (err) {
+	} catch {
 		res.status(500).send({ message: 'Some error occured while creating the Todo' })
 	}
 }
