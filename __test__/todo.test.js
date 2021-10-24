@@ -61,4 +61,21 @@ describe('Todo', () => {
 
 		expect(getSpecificTodoResponse.body.message).toBe('Todo not found')
 	})
+
+	it('Todo can be updated', async () => {
+		const todoCreateResponse =
+			await request
+				.post('/v1/todo')
+				.send({ content: 'Dummy content' })
+
+		const todoID = todoCreateResponse.body.id
+
+		await request
+			.put(`/v1/todo/${todoID}`)
+			.send({ content: 'Updated dummy content' })
+
+		const getSpecificTodoResponse = await request.get(`/v1/todo/${todoID}`)
+
+		expect(getSpecificTodoResponse.body.content).toBe('Updated dummy content')
+	})
 })

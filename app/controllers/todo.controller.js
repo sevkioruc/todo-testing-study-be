@@ -33,3 +33,13 @@ exports.findOne = async (req, res) => {
 		res.status(404).send({ message: 'Todo not found' })
 	}
 }
+
+exports.update = async (req, res) => {
+	const id = req.params.id
+	try {
+		await Todo.update({ content: req.body.content }, { where: { id: id } })
+		res.status(200).send({ message: 'Todo was updated' })
+	} catch {
+		res.status(400).send({ message: 'Todo could not be update' })
+	}
+}

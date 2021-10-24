@@ -9,5 +9,7 @@ module.exports = app => {
 
 	router.post('/', todoController.create)
 
+	router.put('/:id', todoController.update)
+
 	app.use('/v1/todo', router)
 }
