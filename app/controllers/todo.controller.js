@@ -7,13 +7,13 @@ exports.findAll = async (req, res) => {
 }
 
 exports.create = async (req, res) => {
-	if (!req.body.content) {
-		res.status(400).send({ message: 'Content can not be empty' })
+	if (!req.body.title) {
+		res.status(400).send({ message: 'Title can not be empty' })
 		return
 	}
 
 	try {
-		const todo = { content: req.body.content }
+		const todo = { title: req.body.title }
 
 		const response = await Todo.create(todo)
 		res.status(201).send(response.dataValues)
@@ -37,7 +37,7 @@ exports.findOne = async (req, res) => {
 exports.update = async (req, res) => {
 	const id = req.params.id
 	try {
-		await Todo.update({ content: req.body.content }, { where: { id: id } })
+		await Todo.update({ title: req.body.title }, { where: { id: id } })
 		res.status(200).send({ message: 'Todo was updated' })
 	} catch {
 		res.status(400).send({ message: 'Todo could not be update' })

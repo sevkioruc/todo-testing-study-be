@@ -20,42 +20,42 @@ describe('Todo', () => {
 		expect(response.status).toBe(200)
 	})
 
-	it('If todo content is empty then return error message with status 400', async () => {
+	it('If todo title is empty then return error message with status 400', async () => {
 		const response =
 			await request
 				.post('/v1/todo')
 				.send('')
 
-		expect(response.body.message).toBe('Content can not be empty')
+		expect(response.body.message).toBe('Title can not be empty')
 	})
 
-	it('Return todo content when todo is created with status 201', async () => {
+	it('Return todo title when todo is created with status 201', async () => {
 		const response =
 			await request
 				.post('/v1/todo')
-				.send({ content: 'Dummy Content' })
+				.send({ title: 'Dummy Title' })
 
-		expect(response.body.content).toBe('Dummy Content')
+		expect(response.body.title).toBe('Dummy Title')
 	})
 
 	it('Get specific todo with id', async () => {
 		const todoCreateResponse =
 			await request
 				.post('/v1/todo')
-				.send({ content: 'Specific todo content' })
+				.send({ title: 'Specific todo title' })
 
 		const todoID = todoCreateResponse.body.id
 
 		const getSpecificTodoResponse = await request.get(`/v1/todo/${todoID}`)
 
-		expect(getSpecificTodoResponse.body.content).toBe('Specific todo content')
+		expect(getSpecificTodoResponse.body.title).toBe('Specific todo title')
 	})
 
 	it('Return not found error when get specific todo with invalid id', async () => {
 		const todoCreateResponse =
 			await request
 				.post('/v1/todo')
-				.send({ content: 'Specific todo content' })
+				.send({ title: 'Specific todo title' })
 
 		const getSpecificTodoResponse = await request.get('/v1/todo/2')
 
@@ -66,24 +66,24 @@ describe('Todo', () => {
 		const todoCreateResponse =
 			await request
 				.post('/v1/todo')
-				.send({ content: 'Dummy content' })
+				.send({ title: 'Dummy title' })
 
 		const todoID = todoCreateResponse.body.id
 
 		await request
 			.put(`/v1/todo/${todoID}`)
-			.send({ content: 'Updated dummy content' })
+			.send({ title: 'Updated dummy title' })
 
 		const getSpecificTodoResponse = await request.get(`/v1/todo/${todoID}`)
 
-		expect(getSpecificTodoResponse.body.content).toBe('Updated dummy content')
+		expect(getSpecificTodoResponse.body.title).toBe('Updated dummy title')
 	})
 
 	it('Todo can be deleted', async () => {
 		const todoCreateResponse =
 			await request
 				.post('/v1/todo')
-				.send({ content: 'Dummy content' })
+				.send({ title: 'Dummy title' })
 
 		const todoID = todoCreateResponse.body.id
 
